@@ -58,22 +58,25 @@
 
 ########################    Iteratorni foydasi
 
-class OddRange:
-    def __init__(self, start, end):
-        self.current = start if start % 2 == 1 else start + 1
-        self.end = end
+# class OddRange:
+#     def __init__(self, start, end):
+#         self.current = start if start % 2 == 1 else start + 1
+#         self.end = end
+#
+#     def __iter__(self):
+#         return self
+#
+#     def __next__(self):
+#         if self.current >= self.end:
+#             raise StopIteration
+#         val = self.current
+#         self.current += 2
+#         return val
+#
+# for num in OddRange(1, 1_000_000_000):
+#     if num > 100000:
+#         break
+#     print(num)
 
-    def __iter__(self):
-        return self
 
-    def __next__(self):
-        if self.current >= self.end:
-            raise StopIteration
-        val = self.current
-        self.current += 2
-        return val
 
-for num in OddRange(1, 1_000_000_000):
-    if num > 100000:
-        break
-    print(num)
