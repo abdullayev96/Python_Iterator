@@ -80,3 +80,65 @@
 
 
 
+###############   Faqat juft sonlar qaytarish
+
+# for i in range(2, 10000000):     ###########   Oddiy range bilan
+#     if i%2 == 0:
+#         print(i)
+
+
+# class EvenNumbers:                           #############  Iterator bilan
+#     def __init__(self, start, end):
+#         self.current = start if start % 2 == 0 else start + 1
+#         self.end = end
+#
+#     def __iter__(self):
+#         return self
+#
+#     def __next__(self):
+#         if self.current >= self.end:
+#             raise StopIteration
+#         val = self.current
+#         self.current += 2
+#         return val
+#
+# for i in EvenNumbers(2, 10000000):
+#     print(i)
+
+
+############   max songacha chiqarish
+
+
+# class CountUpTo:
+#     def __init__(self, max):
+#         self.max = max
+#         self.current = 1
+#
+#     def __iter__(self):
+#         return self
+#
+#     def __next__(self):
+#         if self.current > self.max:
+#             raise StopIteration
+#         val = self.current
+#         self.current += 1
+#
+#         return val
+#
+# for i in CountUpTo(5):
+#     print(i)
+
+
+#
+# def my_gen():
+#     print("Started")
+#     yield "Hello"
+#     print("Continuing")
+#     yield "World"
+#
+# for i in my_gen():
+#     print(i)
+
+# g = hello_gen()
+# print(next(g))  # 'Started' chiqadi, keyin 'Hello'
+# print(next(g))
