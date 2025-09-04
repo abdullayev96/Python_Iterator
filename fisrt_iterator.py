@@ -142,3 +142,15 @@
 # g = hello_gen()
 # print(next(g))  # 'Started' chiqadi, keyin 'Hello'
 # print(next(g))
+
+
+### 1
+##print(oct(23))
+
+### 2
+
+#print(~(~4))
+
+### 3
+
+print("10 > 5 and 5 < 3")
