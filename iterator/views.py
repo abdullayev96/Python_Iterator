@@ -24,7 +24,7 @@ from .serializers import UserSerializer
 
 
 
-#############   Iterator bilan 5000 ++++ foydalanuvchi bolganda effitniy
+#############   Iterator bilan 5000 ++++ foydalanuvchi bolganda
 
 
 class UserListIteratorView(APIView):
