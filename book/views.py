@@ -9,18 +9,48 @@ from rest_framework.generics import ListAPIView
 from .serializers import AuthorSerializer
 
 
-
 class BookAPIView(APIView):
     def get(self, request, pk=None):
-        # Agar pk bo'lsa → bitta kitob, bo'lmasa → barcha kitoblar
         if pk:
-            book = get_object_or_404(Book.objects.select_related('author'), pk=pk)
-            serializer = BookSerializer(book)
+            book = get_object_or_404(
+                Book.objects.select_related('author').only(
+                    'id',
+                    'image',
+                    'name',
+                    'description',
+                    'author__id',
+                    'author__full_name',
+                    'author__photo'
+                ),
+                pk=pk
+            )
+            serializer = BookSerializer(book, context={"request": request})
             return Response(serializer.data, status=status.HTTP_200_OK)
-        else:
-            books = Book.objects.select_related('author').all()
-            serializer = BookSerializer(books, many=True, context={"request": request})
-            return Response(serializer.data, status=status.HTTP_200_OK)
+
+        books = Book.objects.select_related('author').only(
+            'id',
+            'image',
+            'name',
+            'description',
+            'author__id',
+            'author__full_name',
+            'author__photo'
+        )
+        serializer = BookSerializer(books, many=True, context={"request": request})
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+#
+# class BookAPIView(APIView):
+#     def get(self, request, pk=None):
+#         # Agar pk bo'lsa → bitta kitob, bo'lmasa → barcha kitoblar
+#         if pk:
+#             book = get_object_or_404(Book.objects.select_related('author'), pk=pk)
+#             serializer = BookSerializer(book)
+#             return Response(serializer.data, status=status.HTTP_200_OK)
+#         else:
+#             books = Book.objects.select_related('author').all()
+#             serializer = BookSerializer(books, many=True, context={"request": request})
+#             return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 class AuthorListAPIView(ListAPIView):
